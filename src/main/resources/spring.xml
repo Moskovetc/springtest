@@ -2,19 +2,32 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/util
+   http://www.springframework.org/schema/util/spring-util-3.0.xsd">
     <import resource="loggers.xml"/>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>
+                    classpath:client.properties
+                </value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true"/>
+    </bean>
     <bean id="client" class="Client">
-        <constructor-arg value="1"/>
-        <constructor-arg value="John Smith"/>
-        <property name="greeting" value="Hello sir!"/>
+        <constructor-arg value="${id}"/>
+        <constructor-arg value="${name}"/>
+        <property name="greeting" value="${greeting}"/>
     </bean>
     <bean id="app" class="App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="cacheFileEventLogger"/>
+        <constructor-arg value="#{T(loggers.entity.Event).isDay() ? fileEventLogger : consoleEventLogger}"/>
         <constructor-arg>
-            <map>
+            <map >
                 <entry key="INFO" value-ref="consoleEventLogger"/>
                 <entry key="ERROR" value-ref="combinedEventLogger"/>
             </map>

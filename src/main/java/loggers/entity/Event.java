@@ -1,8 +1,7 @@
 package loggers.entity;
 
-import javafx.scene.input.DataFormat;
-
 import java.text.DateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Random;
 
@@ -32,5 +31,9 @@ public class Event {
                 ", msg='" + msg + '\'' +
                 ", date=" + dateFormat.format(date) +
                 "}\n";
+    }
+    public static boolean isDay() {
+        int hour = LocalDateTime.now().getHour();
+        return hour >= 8 && hour <= 17;
     }
 }
