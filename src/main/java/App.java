@@ -1,37 +1,49 @@
+import loggers.entity.Event;
+import loggers.EventLogger;
+import loggers.entity.EventType;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Map;
+
 public class App {
     private Client client;
-    private EventLogger eventLogger;
+    private Map<EventType, EventLogger>  loggers;
     private static final ConfigurableApplicationContext CONTEXT =
             new ClassPathXmlApplicationContext("spring.xml");
+    private EventLogger defaultLogger;
 
-    public App(Client client, EventLogger eventLogger) {
+    public App(Client client, EventLogger eventLogger, Map<EventType, EventLogger> loggers) {
         this.client = client;
-        this.eventLogger = eventLogger;
+        this.defaultLogger = eventLogger;
+        this.loggers = loggers;
     }
 
     public static void main(String[] args) {
         App app = (App) CONTEXT.getBean("app");
         try {
-            app.logEvent("Some event for user 1");
-            app.logEvent("Some event for user 2");
-            app.logEvent("Some event for user 3");
-            app.logEvent("Some event for user 4");
-            app.logEvent("Some event for user 5");
-            app.logEvent("Some event for user 6");
-            app.logEvent("Some event for user 7");
-            app.logEvent("Some event for user 8");
+            app.logEvent(EventType.INFO, "Some event for user 1");
+            app.logEvent(EventType.ERROR, "Some event for user 2");
+            app.logEvent(EventType.INFO, "Some event for user 3");
+            app.logEvent(EventType.ERROR, "Some event for user 4");
+            app.logEvent(null, "Some event for user 5");
+            app.logEvent(null, "Some event for user 6");
+            app.logEvent(EventType.INFO, "Some event for user 7");
+            app.logEvent(EventType.ERROR, "Some event for user 8");
         } catch (Exception e) {
             e.printStackTrace();
         }
         CONTEXT.close();
     }
 
-    private void logEvent(String msg) throws Exception {
+    private void logEvent(EventType type, String msg) throws Exception {
+        EventLogger logger = loggers.get(type);
+
+        if (logger == null) {
+            logger = defaultLogger;
+        }
         Event event = (Event) CONTEXT.getBean("event");
         event.setMsg(msg.replaceAll(client.getId(), client.getFullName()));
-        eventLogger.logEvent(event);
+        logger.logEvent(event);
     }
 }

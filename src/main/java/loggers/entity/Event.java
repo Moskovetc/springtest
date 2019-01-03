@@ -1,3 +1,5 @@
+package loggers.entity;
+
 import javafx.scene.input.DataFormat;
 
 import java.text.DateFormat;
@@ -25,7 +27,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" +
+        return "loggers.entity.Event{" +
                 "id=" + id +
                 ", msg='" + msg + '\'' +
                 ", date=" + dateFormat.format(date) +
