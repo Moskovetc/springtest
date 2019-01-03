@@ -9,10 +9,17 @@
         <constructor-arg value="1"/>
         <constructor-arg value="John Smith"/>
     </bean>
-    <bean id="eventLogger" class="ConsoleEventLogger"/>
+    <bean id="consoleEventLogger" class="ConsoleEventLogger"/>
+    <bean id="fileEventLogger" class="FileEventLogger" init-method="init">
+        <constructor-arg value="log.log"/>
+    </bean>
+    <bean id="cacheFileEventLogger" class="CacheFileEventLogger" init-method="init" destroy-method="destroy">
+        <constructor-arg value="log.log"/>
+        <constructor-arg value="5"/>
+    </bean>
     <bean id="app" class="App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="eventLogger"/>
+        <constructor-arg ref="cacheFileEventLogger"/>
     </bean>
     <bean id="event" class="Event" scope="prototype">
         <constructor-arg>

@@ -29,6 +29,6 @@ public class Event {
                 "id=" + id +
                 ", msg='" + msg + '\'' +
                 ", date=" + dateFormat.format(date) +
-                '}';
+                "}\n";
     }
 }
