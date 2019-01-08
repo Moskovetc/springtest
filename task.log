@@ -1,0 +1,15 @@
+14:22:26.439 [main] DEBUG o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@145eaa29
+14:22:26.848 [main] DEBUG o.s.b.f.x.XmlBeanDefinitionReader - Loaded 5 bean definitions from class path resource [loggers.xml]
+14:22:26.883 [main] DEBUG o.s.b.f.x.XmlBeanDefinitionReader - Loaded 11 bean definitions from class path resource [spring.xml]
+14:22:26.968 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0'
+14:22:27.142 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+14:22:27.218 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'consoleEventLogger'
+14:22:27.281 [main] DEBUG o.s.a.a.a.ReflectiveAspectJAdvisorFactory - Found AspectJ method: public java.lang.Object loggers.LoggingAspect.logAfter(org.aspectj.lang.ProceedingJoinPoint) throws java.lang.Throwable
+14:22:27.596 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'fileEventLogger'
+14:22:27.626 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'cacheFileEventLogger'
+14:22:27.634 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'combinedEventLogger'
+14:22:27.645 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'loggingAspect'
+14:22:27.646 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'client'
+14:22:27.667 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'app'
+14:22:27.883 [main] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'dateFormat'
+14:29:36.423 [main] DEBUG o.s.c.s.ClassPathXmlApplicationContext - Closing org.springframework.context.support.ClassPathXmlApplicationContext@145eaa29, started on Tue Jan 08 14:22:26 SAMT 2019

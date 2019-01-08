@@ -20,5 +20,6 @@
             </list>
         </constructor-arg>
     </bean>
+    <bean id="loggingAspect" class="loggers.LoggingAspect"/>
 
 </beans>
